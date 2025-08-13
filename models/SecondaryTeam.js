@@ -8,6 +8,7 @@ const CodeSchema = new mongoose.Schema({
 const TeamSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
+    qrId : { type: String, required: true, unique: true},
     codes: [CodeSchema],
   },
   { collection: "Team-Codes" }

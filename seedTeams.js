@@ -1,10 +1,10 @@
 import mongoose from "mongoose";
 import TeamData from "./models/SecondaryTeam.js";
 
-
 const teams = [
   {
     teamId: "team001",
+    qrId: "vgdhvjsF", // Unique QR for identifying the team
     codes: [
       { value: "3bdhLq2w", scanned: false },
       { value: "8xnAje6P", scanned: false },
@@ -16,6 +16,7 @@ const teams = [
   },
   {
     teamId: "team002",
+    qrId: "hjdks9Pq", // Another unique QR for second team
     codes: [
       { value: "Tq9LmY2x", scanned: false },
       { value: "Rw6Ajd8F", scanned: false },
@@ -38,6 +39,9 @@ async function insertTeams() {
     });
 
     console.log("✅ MongoDB connected");
+
+    await TeamData.deleteMany({});
+    console.log("🗑 Existing team data cleared");
 
     await TeamData.insertMany(teams);
     console.log("✅ Teams inserted successfully");

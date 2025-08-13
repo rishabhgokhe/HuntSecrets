@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Scanner,
-  useDevices,
-  outline,
-  boundingBox,
-  centerText,
-} from "@yudiel/react-qr-scanner";
+import { Scanner, useDevices, centerText } from "@yudiel/react-qr-scanner";
 
 const styles = {
   container: {
@@ -14,30 +8,26 @@ const styles = {
     margin: "auto",
     padding: 20,
   },
-  controls: {
-    marginBottom: 12,
-    display: "flex",
-    gap: 10,
-    flexWrap: "wrap",
-  },
 };
 
 const QRCodeScanner = () => {
   const [deviceId, setDeviceId] = useState(undefined);
   const [pause, setPause] = useState(false);
   const [message, setMessage] = useState("📷 Scan a QR Code");
-  const [messageTimer, setMessageTimer] = useState(null);
-  const [tracker, setTracker] = useState("centerText");
+  const [teamId, setTeamId] = useState("");
   const devices = useDevices();
 
-  const showMessage = (msg) => {
-    setMessage(msg);
-    // Optionally, reset after a few seconds
-    // clearTimeout(messageTimer);
-    // const timer = setTimeout(() => {
-    //   setMessage("📷 Scan a QR Code");
-    // }, 5000);
-    // setMessageTimer(timer);
+  const showMessage = (msg) => setMessage(msg);
+
+  const askForTeamId = () => {
+    const inputId = prompt("Enter your Team ID:");
+    if (inputId && inputId.trim() !== "") {
+      setTeamId(inputId.trim());
+      return inputId.trim();
+    } else {
+      showMessage("❌ Team ID required");
+      return null;
+    }
   };
 
   const handleScan = (codes) => {
@@ -46,17 +36,30 @@ const QRCodeScanner = () => {
 
     try {
       const params = new URLSearchParams(new URL(url).search);
-      const teamId = params.get("teamId");
       const qrId = params.get("qrId");
+      const qrValue = params.get("qrValue");
 
-      if (teamId || qrId) {
-        showMessage(`✅ Scanned: ${teamId} - ${qrId}`);
+      if (!qrId || !qrValue) {
+        showMessage("❌ Invalid QR format");
+        return;
+      }
+
+      if (!teamId) {
+        const enteredId = askForTeamId();
+        if (!enteredId) return;
+      }
+
+      let currentTeamId = teamId;
+      if (!currentTeamId) {
+        const enteredId = askForTeamId();
+        if (!enteredId) return;
+        currentTeamId = enteredId;
       }
 
       fetch("/api/validate", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ teamId, qrId }),
+        body: JSON.stringify({ teamId: currentTeamId, qrId, qrValue }),
       })
         .then((res) => res.json())
         .then((data) => {
@@ -79,18 +82,6 @@ const QRCodeScanner = () => {
         {pause ? "▶️ Resume Scanner" : "⏸️ Pause Scanner"}
       </button>
 
-      <div style={styles.controls}>
-        {/* Optional: Camera selection */}
-        {/* <select onChange={(e) => setDeviceId(e.target.value)}>
-          <option value={undefined}>Select Camera</option>
-          {devices.map((device, i) => (
-            <option key={i} value={device.deviceId}>
-              {device.label || `Camera ${i + 1}`}
-            </option>
-          ))}
-        </select> */}
-      </div>
-
       <Scanner
         formats={["qr_code"]}
         constraints={{ deviceId }}
@@ -110,6 +101,7 @@ const QRCodeScanner = () => {
         }}
         allowMultiple={false}
       />
+
       <div className="text-center mt-4 text-lg font-semibold text-white bg-black/80 rounded-md px-4 py-2 w-full">
         {message}
       </div>
