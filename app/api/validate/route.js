@@ -29,7 +29,7 @@ export async function POST(req) {
 
     if (!teamId || !qrId || !qrValue) {
       return Response.json(
-        { success: false, message: "Missing teamId, qrId, or qrValue" },
+        { success: false, message: "⚠️ Missing teamId, qrId, or qrValue" },
         { status: 400 }
       );
     }
@@ -37,7 +37,7 @@ export async function POST(req) {
     const alreadyScanned = await Scan.findOne({ teamId, qrValue });
     if (alreadyScanned) {
       return Response.json(
-        { success: false, message: "Already scanned" },
+        { success: false, message: "🔁 Already scanned this QR!" },
         { status: 200 }
       );
     }
@@ -45,7 +45,7 @@ export async function POST(req) {
     const teamDoc = await TeamData.findOne({ teamId, qrId });
     if (!teamDoc) {
       return Response.json(
-        { success: false, message: "Invalid team or QR ID" },
+        { success: false, message: "🚫 Invalid team or QR ID" },
         { status: 404 }
       );
     }
@@ -55,7 +55,7 @@ export async function POST(req) {
     );
     if (currentIndex === -1) {
       return Response.json(
-        { success: false, message: "QR value not found for this team" },
+        { success: false, message: "❓ QR value not found for this team" },
         { status: 400 }
       );
     }
@@ -63,7 +63,7 @@ export async function POST(req) {
     // Sequence validation
     if (currentIndex > 0 && !teamDoc.codes[currentIndex - 1].scanned) {
       return Response.json(
-        { success: false, message: "Invalid sequence" },
+        { success: false, message: "⏭️ Invalid sequence — scan previous QR first!" },
         { status: 400 }
       );
     }
@@ -75,13 +75,13 @@ export async function POST(req) {
     await Scan.create({ teamId, qrId, qrValue });
 
     return Response.json(
-      { success: true, message: "QR marked as done" },
+      { success: true, message: "✅ QR marked as done — great job!" },
       { status: 200 }
     );
   } catch (error) {
     console.error("Error validating QR:", error);
     return Response.json(
-      { success: false, message: "Internal server error" },
+      { success: false, message: "💥 Internal server error" },
       { status: 500 }
     );
   }
