@@ -13,19 +13,20 @@ const geistMono = Geist_Mono({
 
 export const metadata = {
   title: "CipherChase",
-  description: "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
+  description:
+    "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
+  metadataBase: new URL("https://upsurge-cipherchase.vercel.app/"),
   icons: {
-    icon: "/logo.png",
+    // icon: "/logo.png",
   },
-  themeColor: "#000000",
   openGraph: {
     title: "CipherChase",
-    description: "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
-    url: "https://upsurge-cipherchase.vercel.app/",
+    description:
+      "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
     siteName: "CipherChase",
     images: [
       {
-        url: "", 
+        url: "/banner.png",
         width: 1200,
         height: 630,
         alt: "CipherChase Banner",
@@ -36,21 +37,25 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: "CipherChase",
-    description: "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
-    images: [
-      "",
-    ],
+    description:
+      "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
+    images: ["/banner.png"],
   },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  themeColor: "#000000",
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
+    <html lang="en" className={`${geistSans.variable} ${geistMono.variable}`}>
+      <head>
+        <link rel="icon" type="image/png" href="/logo.png" />
+      </head>
+      <body className="antialiased">{children}</body>
     </html>
   );
 }

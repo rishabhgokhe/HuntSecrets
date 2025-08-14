@@ -15,10 +15,8 @@ export default function Home() {
         backgroundAttachment: "fixed",
       }}
     >
-      {/* Dark overlay */}
       <div className="absolute inset-0 bg-black/30 bg-opacity-40"></div>
 
-      {/* Content layer */}
       <div className="relative z-10 p-8 pb-20 gap-16 sm:p-20 flex flex-col items-center">
         <Header />
         <QRCodeScanner />

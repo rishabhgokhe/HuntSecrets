@@ -1,44 +1,15 @@
 import TeamData from "@/models/SecondaryTeam";
 import { connectToDB } from "@/utils/db";
-import mongoose from "mongoose";
-
-const ScanSchema = new mongoose.Schema(
-  {
-    teamId: { type: String, required: true, trim: true },
-    qrId: { type: String, required: true, trim: true },
-    qrValue: { type: String, required: true, trim: true },
-    scannedAt: { type: Date, default: Date.now },
-    timeOnly: {
-      type: String,
-      default: () => {
-        const now = new Date();
-        return now.toTimeString().split(" ")[0];
-      },
-    },
-  },
-  { collection: "Qr-Treasure-Hunt" }
-);
-
-const Scan = mongoose.models.Scan || mongoose.model("Scan", ScanSchema);
 
 export async function POST(req) {
   try {
     await connectToDB();
-
     const { teamId, qrId, qrValue } = await req.json();
 
     if (!teamId || !qrId || !qrValue) {
       return Response.json(
         { success: false, message: "⚠️ Missing teamId, qrId, or qrValue" },
         { status: 400 }
-      );
-    }
-
-    const alreadyScanned = await Scan.findOne({ teamId, qrValue });
-    if (alreadyScanned) {
-      return Response.json(
-        { success: false, message: "🔁 Already scanned this QR!" },
-        { status: 200 }
       );
     }
 
@@ -68,16 +39,41 @@ export async function POST(req) {
       );
     }
 
-    teamDoc.codes[currentIndex].scanned = true;
-    await teamDoc.save();
+    const code = teamDoc.codes[currentIndex];
 
-    // Save the scan log
-    await Scan.create({ teamId, qrId, qrValue });
+    // If already scanned → show hint only
+    if (code.scanned) {
+      return Response.json(
+        {
+          success: true,
+          message: "🔍 QR already completed. Here's your hint again.",
+          hint: code.hint
+        },
+        { status: 200 }
+      );
+    }
+
+    // If not scanned → show question
+    if (!code.question) {
+      return Response.json(
+        { success: false, message: "❌ No question assigned to this QR" },
+        { status: 404 }
+      );
+    }
 
     return Response.json(
-      { success: true, message: "✅ QR marked as done — great job!" },
+      {
+        success: true,
+        message: "✅ QR validated! Answer the question to proceed.",
+        question: {
+          text: code.question,
+          options: code.options,
+          hint: code.hint
+        }
+      },
       { status: 200 }
     );
+
   } catch (error) {
     console.error("Error validating QR:", error);
     return Response.json(
