@@ -16,7 +16,7 @@ const Header = () => {
       </div>
 
       <h1 className="mx-6 text-5xl font-extrabold font-mono text-pink-500 drop-shadow-[0_0_12px_rgba(255,0,128,0.8)]">
-        Cypher Chase
+        Cipher Chase
       </h1>
 
       <div className="w-14 h-14 flex-shrink-0 animate-pulse">
