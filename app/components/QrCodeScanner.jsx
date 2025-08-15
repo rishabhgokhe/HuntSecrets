@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Scanner, centerText } from "@yudiel/react-qr-scanner";
+import { Pause, Play } from "lucide-react";
 
 const QRCodeScanner = () => {
   const [pause, setPause] = useState(false);
@@ -134,15 +135,18 @@ const QRCodeScanner = () => {
 
   return (
     <div className="w-full max-w-lg mx-auto p-6 bg-black/60 backdrop-blur-md rounded-2xl shadow-lg border border-pink-500">
-      {/* Pause Button */}
+      
+      {/* Play Pause Button */}
       <div className="flex justify-between items-center mb-4">
         <button
           onClick={() => setPause(!pause)}
-          className={`px-4 py-2 rounded font-semibold transition 
-            ${pause ? "bg-green-500 hover:bg-green-600" : "bg-red-500 hover:bg-red-600"}
-          `}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all shadow-md
+      ${ pause
+          ? "bg-green-500 hover:bg-green-600 text-white"
+          : "bg-red-500 hover:bg-red-600 text-white"
+      }`}
         >
-          {pause ? "▶ Resume" : "⏸ Pause"}
+          {pause ? (<><Play size={18} />Resume</>) : (<><Pause size={18} />Pause</>)}
         </button>
       </div>
 

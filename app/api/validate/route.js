@@ -1,7 +1,7 @@
 import TeamData from "@/models/SecondaryTeam";
 import { connectToDB } from "@/utils/db";
 
-const PENALTY_MINUTES = 1;
+const PENALTY_MINUTES = 2;
 
 export async function POST(req) {
   try {

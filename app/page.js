@@ -1,8 +1,8 @@
 "use client";
-import CheckerTimeline from "./components/CheckerTimeline";
 import Header from "./components/Header";
 import Leaderboard from "./components/Leaderboard";
 import QRCodeScanner from "./components/QrCodeScanner";
+import TeamProgress from "./components/TeamProgress";
 
 export default function Home() {
   return (
@@ -20,7 +20,7 @@ export default function Home() {
       <div className="relative z-10 p-8 pb-20 gap-16 sm:p-20 flex flex-col items-center">
         <Header />
         <QRCodeScanner />
-        <CheckerTimeline />
+        <TeamProgress />
         <Leaderboard />
         <p className="mt-8 text-center text-sm text-gray-300">
           Developed with <span className="text-red-500">❤️</span> by{" "}

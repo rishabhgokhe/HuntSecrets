@@ -7,14 +7,30 @@ export async function GET() {
 
     const teams = await Team.find({});
 
-    // Calculate score for each team
-    const leaderboard = teams.map(team => ({
-      teamId: team.teamId,
-      score: team.codes.filter(code => code.scanned).length
-    }));
+    const leaderboard = teams.map((team) => {
+      const scannedCodes = team.codes.filter((code) => code.scanned);
 
-    // Sort descending by score
-    leaderboard.sort((a, b) => b.score - a.score);
+      const latestScanTime = scannedCodes.length
+        ? Math.max(...scannedCodes.map((c) => new Date(c.scannedAt).getTime()))
+        : null;
+
+      return {
+        teamId: team.teamId,
+        score: scannedCodes.length,
+        latestScanTime,
+      };
+    });
+
+    // Sort:
+    // 1. By score (desc)
+    // 2. By latestScanTime (asc) — earlier finish ranks higher
+    leaderboard.sort((a, b) => {
+      if (b.score !== a.score) return b.score - a.score;
+      if (a.latestScanTime && b.latestScanTime) {
+        return a.latestScanTime - b.latestScanTime;
+      }
+      return 0;
+    });
 
     return Response.json({ success: true, leaderboard }, { status: 200 });
   } catch (error) {
