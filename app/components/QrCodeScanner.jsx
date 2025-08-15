@@ -1,30 +1,59 @@
-import React, { useState } from "react";
-import { Scanner, useDevices, centerText } from "@yudiel/react-qr-scanner";
+import React, { useState, useEffect, useRef } from "react";
+import { Scanner, centerText } from "@yudiel/react-qr-scanner";
 
 const QRCodeScanner = () => {
-  const [deviceId, setDeviceId] = useState(undefined);
   const [pause, setPause] = useState(false);
   const [message, setMessage] = useState("📷 Scan a QR Code");
   const [teamId, setTeamId] = useState("");
   const [questionData, setQuestionData] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [currentQR, setCurrentQR] = useState({ qrId: "", qrValue: "" });
-  const devices = useDevices();
+  const [penaltyUntil, setPenaltyUntil] = useState(null);
+  const [penaltyRemaining, setPenaltyRemaining] = useState("");
+  const [showHint, setShowHint] = useState(""); // NEW: show hint after correct answer
+  const timerRef = useRef(null);
 
   const showMessage = (msg) => setMessage(msg);
 
   const askForTeamId = () => {
     const inputId = prompt("Enter your Team ID:");
-    if (inputId && inputId.trim() !== "") {
+    if (inputId?.trim()) {
       setTeamId(inputId.trim());
       return inputId.trim();
-    } else {
-      showMessage("❌ Team ID required");
-      return null;
     }
+    showMessage("❌ Team ID required");
+    return null;
   };
 
+  // Penalty countdown
+  useEffect(() => {
+    if (!penaltyUntil) {
+      clearInterval(timerRef.current);
+      setPenaltyRemaining("");
+      return;
+    }
+    timerRef.current = setInterval(() => {
+      const diff = new Date(penaltyUntil) - new Date();
+      if (diff <= 0) {
+        clearInterval(timerRef.current);
+        setPenaltyUntil(null);
+        setPenaltyRemaining("");
+        showMessage("✅ Penalty over! You can scan again.");
+      } else {
+        const minutes = Math.floor(diff / 1000 / 60);
+        const seconds = Math.floor(diff / 1000) % 60;
+        setPenaltyRemaining(`⏳ Penalty time: ${minutes}m ${seconds}s`);
+      }
+    }, 1000);
+    return () => clearInterval(timerRef.current);
+  }, [penaltyUntil]);
+
   const handleScan = (codes) => {
+    if (penaltyUntil) {
+      showMessage("⚠ Under penalty. Wait until it expires.");
+      return;
+    }
+
     const url = codes[0]?.rawValue;
     if (!url) return;
 
@@ -38,17 +67,8 @@ const QRCodeScanner = () => {
         return;
       }
 
-      if (!teamId) {
-        const enteredId = askForTeamId();
-        if (!enteredId) return;
-      }
-
-      let currentTeamId = teamId;
-      if (!currentTeamId) {
-        const enteredId = askForTeamId();
-        if (!enteredId) return;
-        currentTeamId = enteredId;
-      }
+      const currentTeamId = teamId || askForTeamId();
+      if (!currentTeamId) return;
 
       fetch("/api/validate", {
         method: "POST",
@@ -57,13 +77,17 @@ const QRCodeScanner = () => {
       })
         .then((res) => res.json())
         .then((data) => {
+          if (data.penaltyUntil) {
+            setPenaltyUntil(data.penaltyUntil);
+            showMessage(data.message);
+            return;
+          }
           if (data.success) {
+            setShowHint(""); // reset previous hint
             if (data.hint && !data.question) {
-              // Already scanned → show only hint
               setQuestionData(null);
               showMessage(`💡 Hint: ${data.hint}`);
             } else {
-              // New QR → show question
               setQuestionData(data.question);
               setCurrentQR({ qrId, qrValue });
               showMessage(data.message);
@@ -73,10 +97,8 @@ const QRCodeScanner = () => {
             showMessage(data.message);
           }
         })
-        .catch(() => {
-          showMessage("⚠️ Something went wrong");
-        });
-    } catch (err) {
+        .catch(() => showMessage("⚠️ Something went wrong"));
+    } catch {
       showMessage("❌ Invalid QR format");
     }
   };
@@ -101,18 +123,18 @@ const QRCodeScanner = () => {
       .then((data) => {
         showMessage(data.message);
         if (data.success) {
-          setQuestionData(null);
           setSelectedAnswer("");
+          if (data.hint) setShowHint(data.hint); // show hint inside question box
         }
       })
-      .catch(() => {
-        showMessage("⚠️ Something went wrong while submitting answer");
-      });
+      .catch(() =>
+        showMessage("⚠️ Something went wrong while submitting answer")
+      );
   };
 
   return (
     <div className="w-full max-w-lg mx-auto p-6 bg-black/60 backdrop-blur-md rounded-2xl shadow-lg border border-pink-500">
-      {/* Controls */}
+      {/* Pause Button */}
       <div className="flex justify-between items-center mb-4">
         <button
           onClick={() => setPause(!pause)}
@@ -124,40 +146,39 @@ const QRCodeScanner = () => {
         </button>
       </div>
 
+      {/* Penalty Timer */}
+      {penaltyRemaining && (
+        <div className="mb-4 text-center text-yellow-400 font-bold">
+          {penaltyRemaining}
+        </div>
+      )}
+
       {/* Scanner */}
-      {!questionData && (
+      {!questionData && !penaltyUntil && (
         <div className="overflow-hidden rounded-xl border-4 border-pink-500 shadow-[0_0_20px_rgba(255,0,128,0.6)]">
           <Scanner
             formats={["qr_code"]}
-            constraints={{ deviceId }}
             paused={pause}
             scanDelay={1000}
             onScan={handleScan}
-            onError={(err) => {
-              console.error("Scanner error:", err);
-              showMessage("⚠ Camera error");
-            }}
+            onError={() => showMessage("⚠ Camera error")}
             components={{
               torch: true,
               zoom: true,
               finder: true,
               tracker: centerText,
             }}
-            allowMultiple={false}
           />
         </div>
       )}
 
-      {/* Question Display */}
+      {/* Question */}
       {questionData && (
         <div className="mt-4 p-4 bg-gray-800 rounded-lg border border-pink-500">
           <p className="text-lg font-bold text-pink-400">{questionData.text}</p>
           <div className="mt-3 space-y-2">
             {questionData.options.map((opt, idx) => (
-              <label
-                key={idx}
-                className="flex items-center space-x-2 cursor-pointer"
-              >
+              <label key={idx} className="flex items-center space-x-2 cursor-pointer">
                 <input
                   type="radio"
                   name="answer"
@@ -169,10 +190,8 @@ const QRCodeScanner = () => {
               </label>
             ))}
           </div>
-          {questionData.hint && (
-            <p className="mt-2 text-sm text-yellow-400">
-              💡 Hint: {questionData.hint}
-            </p>
+          {showHint && (
+            <p className="mt-2 text-sm text-yellow-400">💡 Hint: {showHint}</p>
           )}
           <button
             onClick={handleSubmitAnswer}
@@ -183,7 +202,7 @@ const QRCodeScanner = () => {
         </div>
       )}
 
-      {/* Message */}
+      {/* Status Message */}
       <div className="mt-4 text-center text-lg font-bold text-pink-400 bg-black/70 rounded-md px-4 py-2 border border-pink-500">
         {message}
       </div>

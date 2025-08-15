@@ -50,16 +50,29 @@ export async function POST(req) {
       await teamDoc.save();
 
       return Response.json(
-        { success: true, message: "✅ Correct! QR marked as done." },
+        {
+          success: true,
+          message: "🎉 Correct! Here's your hint.",
+          hint: code.hint,
+        },
         { status: 200 }
       );
     } else {
+      const PENALTY_MINUTES = 2;
+      const penaltyEnd = new Date(Date.now() + PENALTY_MINUTES * 60 * 1000);
+
+      teamDoc.penaltyUntil = penaltyEnd;
+      await teamDoc.save();
+
       return Response.json(
-        { success: false, message: "❌ Incorrect answer, try again!" },
+        {
+          success: false,
+          message: `❌ Incorrect answer! Penalty applied ${PENALTY_MINUTES} minutes.`,
+          penaltyUntil: penaltyEnd,
+        },
         { status: 200 }
       );
     }
-
   } catch (error) {
     console.error("Error submitting answer:", error);
     return Response.json(

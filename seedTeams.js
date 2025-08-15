@@ -5,6 +5,7 @@ const teams = [
   {
     teamId: "team001",
     qrId: "vgdhvjsF",
+    penaltyUntil: null,
     codes: [
       {
         value: "3bdhLq2w",
@@ -71,6 +72,7 @@ const teams = [
   {
     teamId: "team002",
     qrId: "hjdks9Pq",
+    penaltyUntil: null,
     codes: [
       {
         value: "Tq9LmY2x",
