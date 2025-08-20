@@ -28,7 +28,7 @@ export default function Leaderboard() {
   const getRankIcon = (rank) => {
     if (rank === 1) return <Trophy className="text-yellow-400 drop-shadow-[0_0_6px_gold]" size={22} />;
     if (rank === 2) return <Medal className="text-gray-300 drop-shadow-[0_0_6px_silver]" size={22} />;
-    if (rank === 3) return <Award className="text-amber-600 drop-shadow-[0_0_6px_orange]" size={22} />;
+    // if (rank === 3) return <Award className="text-amber-600 drop-shadow-[0_0_6px_orange]" size={22} />;
     return <Circle className="text-gray-500" size={14} />;
   };
 
@@ -69,7 +69,7 @@ export default function Leaderboard() {
                         : "bg-amber-600/10"
                       : "bg-transparent"
                   } hover:bg-pink-500/10`}
-                  style={index === 2 ? { borderBottom: "2px solid #ec4899" } : {}}
+                  style={index === 1 ? { borderBottom: "2px solid #ec4899" } : {}}
                 >
                   <td className="p-3 flex items-center gap-2">
                     {getRankIcon(index + 1)}

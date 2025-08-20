@@ -14,14 +14,14 @@ const CodeSchema = new mongoose.Schema({
 const TeamSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
-    qrId: { type: String, required: true, unique: true },
+    qrId: { type: String, required: true },
     penaltyUntil: { type: Date, default: null },
     codes: [CodeSchema],
   },
   { collection: "Team-Codes" }
 );
 
-// delete mongoose.connection.models["TeamData"];
+delete mongoose.connection.models["TeamData"];
 const TeamData =
   mongoose.models.TeamData || mongoose.model("TeamData", TeamSchema);
 

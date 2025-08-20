@@ -1,8 +1,11 @@
 "use client";
+import Feedback from "./components/Feedback";
+import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Leaderboard from "./components/Leaderboard";
 import QRCodeScanner from "./components/QrCodeScanner";
 import TeamProgress from "./components/TeamProgress";
+import Tips from "./components/Tips";
 
 export default function Home() {
   return (
@@ -22,18 +25,10 @@ export default function Home() {
         <QRCodeScanner />
         <TeamProgress />
         <Leaderboard />
-        <p className="mt-8 text-center text-sm text-gray-300">
-          Developed with <span className="text-red-500">❤️</span> by{" "}
-          <a
-            href="https://github.com/rishabhgokhe"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="font-semibold text-pink-400 hover:text-pink-300 hover:underline transition-colors"
-          >
-            Rishabh
-          </a>
-        </p>
+        <Footer />
+        <Tips />
       </div>
+      <Feedback /> 
     </div>
   );
 }
