@@ -868,12 +868,11 @@ const teams = [
       },
     ],
   },
-];
+]
 
 async function insertTeams() {
   try {
-    const MONGO_URI =
-      "mongodb+srv://admin-Rishabh:norzyq-4kijku-tivSax@cluster0.w2cgmbz.mongodb.net/Treasure-Hunt?retryWrites=true&w=majority";
+    const MONGO_URI = "";
     if (!MONGO_URI) throw new Error("Missing MONGO_URI in environment");
 
     await mongoose.connect(MONGO_URI, {
