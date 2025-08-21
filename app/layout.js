@@ -17,7 +17,7 @@ export const metadata = {
     "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
   metadataBase: new URL("https://upsurge-cipherchase.vercel.app/"),
   icons: {
-    // icon: "/logo.png",
+    icon: "/CipherChase.jpg",
   },
   openGraph: {
     title: "CipherChase",
@@ -26,7 +26,7 @@ export const metadata = {
     siteName: "CipherChase",
     images: [
       {
-        url: "/banner.png",
+        url: "/CipherChase.jpg",
         width: 1200,
         height: 630,
         alt: "CipherChase Banner",
@@ -39,7 +39,7 @@ export const metadata = {
     title: "CipherChase",
     description:
       "Cipher Chase - A thrilling team-based treasure hunt where QR codes hide puzzles and challenges. Solve, strategize, and race to win the ₹5000 prize pool!",
-    images: ["/banner.png"],
+    images: ["/CipherChase.jpg"],
   },
 };
 
