@@ -3,7 +3,7 @@ import TeamData from "./models/SecondaryTeam.js";
 `1`;
 const teams = [
   {
-    teamId: "team001",
+    teamId: "T1X9A2",
     qrId: "Oj5PLQr6",
     name: "Team-1",
     penaltyUntil: null,
@@ -59,7 +59,7 @@ const teams = [
         question: "In Python, what will 0.1 + 0.2 == 0.3 return?",
         options: ["TRUE", "FALSE", "Float precision", "Error"],
         answer: "FALSE",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
@@ -86,7 +86,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team002",
+    teamId: "T2B7K5",
     qrId: "Oj5PLQr6",
     name: "Team-2",
     penaltyUntil: null,
@@ -168,7 +168,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team003",
+    teamId: "T3M4Q8",
     qrId: "Oj5PLQr6",
     name: "Team-3",
     penaltyUntil: null,
@@ -246,7 +246,7 @@ const teams = [
           "A discussion begins about art history, digresses into train timetables, explores volcanic rock types, and then nonchalantly mentions that the rectangular transparent thing you can look through is made of glass and part of the wall.",
         options: ["Window", "Screen", "Painting", "Mirror"],
         answer: "Window",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
@@ -262,7 +262,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team004",
+    teamId: "T4R6Z1",
     qrId: "Oj5PLQr6",
     name: "Team-4",
     penaltyUntil: null,
@@ -276,7 +276,7 @@ const teams = [
           "I fly on flags, proud in crimson; my color stands for blood, courage, or luck. Who am I?",
         options: ["Canada", "Japan", "China", "Switzerland"],
         answer: "Canada",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
@@ -318,7 +318,7 @@ const teams = [
           "D.A.V. (Dayanand Anglo-Vedic) Schools",
         ],
         answer: "D.A.V. (Dayanand Anglo-Vedic) Schools",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
@@ -356,7 +356,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team005",
+    teamId: "T5L8D3",
     qrId: "Oj5PLQr6",
     name: "Team-5",
     penaltyUntil: null,
@@ -441,7 +441,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team006",
+    teamId: "T6N2W7",
     qrId: "Oj5PLQr6",
     name: "Team-6",
     penaltyUntil: null,
@@ -529,7 +529,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team007",
+    teamId: "T7P9H4",
     qrId: "Oj5PLQr6",
     name: "Team-7",
     penaltyUntil: null,
@@ -554,7 +554,7 @@ const teams = [
           "I'm indivisible by all but one and myself, and I'm proud to be odd. Who am I?",
         options: ["1", "2", "3", "5"],
         answer: "5",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
@@ -619,7 +619,7 @@ const teams = [
     ],
   },
   {
-    teamId: "team008",
+    teamId: "T8C5J6",
     qrId: "Oj5PLQr6",
     name: "Team-8",
     penaltyUntil: null,
@@ -659,7 +659,7 @@ const teams = [
           "Xtreme Secure System",
         ],
         answer: "Cross Site Scripting",
-        hint: "Samne se nahi, par piche se hai raasta, Beaker, flask aur pipette ka hai yeh basta. Experiments aur theory ka hai yeh saathi, Batao kaun si jagah hai chemistry ki baathi?",
+        hint: "Samne se nahi, par piche se hai raasta, Lens, prism, CRT aur pendulum ka basta. Experiments ki goonj, theory ka raaz, Batao kahan hai physics ka andaaz?",
       },
       {
         value: "b5X7r9yG",
