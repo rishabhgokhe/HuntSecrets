@@ -15,7 +15,7 @@ export async function GET() {
         : null;
 
       return {
-        teamId: team.teamId,
+        name: team.name,
         score: scannedCodes.length,
         latestScanTime,
       };

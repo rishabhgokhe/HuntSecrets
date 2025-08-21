@@ -22,7 +22,7 @@ const TeamSchema = new mongoose.Schema(
   { collection: "Team-Codes" }
 );
 
-delete mongoose.connection.models["TeamData"];
+// delete mongoose.connection.models["TeamData"];
 const TeamData =
   mongoose.models.TeamData || mongoose.model("TeamData", TeamSchema);
 
