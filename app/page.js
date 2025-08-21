@@ -28,7 +28,7 @@ export default function Home() {
         <Footer />
         <Tips />
       </div>
-      <Feedback /> 
+      {/* <Feedback />  */}
     </div>
   );
 }

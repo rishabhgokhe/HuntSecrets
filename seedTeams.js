@@ -5,6 +5,7 @@ const teams = [
   {
     teamId: "team001",
     qrId: "Oj5PLQr6",
+    name: "Team-1",
     penaltyUntil: null,
     codes: [
       {
@@ -87,6 +88,7 @@ const teams = [
   {
     teamId: "team002",
     qrId: "Oj5PLQr6",
+    name: "Team-2",
     penaltyUntil: null,
     codes: [
       {
@@ -168,6 +170,7 @@ const teams = [
   {
     teamId: "team003",
     qrId: "Oj5PLQr6",
+    name: "Team-3",
     penaltyUntil: null,
     codes: [
       {
@@ -261,6 +264,7 @@ const teams = [
   {
     teamId: "team004",
     qrId: "Oj5PLQr6",
+    name: "Team-4",
     penaltyUntil: null,
     codes: [
       {
@@ -354,6 +358,7 @@ const teams = [
   {
     teamId: "team005",
     qrId: "Oj5PLQr6",
+    name: "Team-5",
     penaltyUntil: null,
     codes: [
       {
@@ -438,6 +443,7 @@ const teams = [
   {
     teamId: "team006",
     qrId: "Oj5PLQr6",
+    name: "Team-6",
     penaltyUntil: null,
     codes: [
       {
@@ -525,6 +531,7 @@ const teams = [
   {
     teamId: "team007",
     qrId: "Oj5PLQr6",
+    name: "Team-7",
     penaltyUntil: null,
     codes: [
       {
@@ -614,6 +621,7 @@ const teams = [
   {
     teamId: "team008",
     qrId: "Oj5PLQr6",
+    name: "Team-8",
     penaltyUntil: null,
     codes: [
       {
@@ -699,176 +707,176 @@ const teams = [
       },
     ],
   },
-  {
-    teamId: "team009",
-    qrId: "Oj5PLQr6",
-    penaltyUntil: null,
-    codes: [
-      {
-        value: "VsuvZOXK",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "I open windows to the web, some say I’m fast as a fox, others polished like an apple. Who am I?",
-        options: ["Chrome", "Firefox", "Safari", "Edge"],
-        answer: "Safari",
-        hint: "Na kitab, na board, bas comfort yahan, Friends ke saath guzar jaate breaks ke raan. Khushbu se pehchano is jagah ka naam, Har break ka main intezaam.",
-      },
-      {
-        value: "YDDm505s",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "I keep you awake, make your heart race, and hide in beans, leaves, or cocoa. What am I?",
-        options: ["Coffee", "Tea", "Cola", "Dark Chocolate"],
-        answer: "Dark Chocolate",
-        hint: "IT ke samne, screen aur ideas ka mela, Code aur circuits ka yahan hota khela. Seekhne, banane aur dikhane ka hub, Kaun si jagah hai tech lovers ka club?",
-      },
-      {
-        value: "cY4dRNfl",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "I’m perfectly balanced in my sides, wearing symmetry like a crown. Who am I?",
-        options: [
-          "Square",
-          "Rhombus",
-          "Equilateral Triangle",
-          "Regular Pentagon",
-        ],
-        answer: "Rhombus",
-        hint: "Building ke paas, chhoti si jagah, Gaadiyon ka baithta yahan chhota basera. Suvidha ke raaste me milta yeh spot, Pedh ke saaye me hai konsa lot",
-      },
-      {
-        value: "hqYUOqVZ",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "I build muscles, repair tissues, and can be eaten in many forms. What am I?",
-        options: ["Eggs", "Chicken", "Almonds", "Lentils"],
-        answer: "Eggs",
-        hint: "Naap, tol aur design ka hota yahan kaam, Models aur drawings se sajta iska naam. Roz guzarte bacche mere paas se, College aate ya college se jaate raaste.",
-      },
-      {
-        value: "VsuvZOXK",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question: "Decode the given into correct word: 'cinema'?",
-        options: ["cinema", "anemic", "iceman", "amine"],
-        answer: "iceman",
-        hint: "Na tyre, na rail par chalti hoon, Floor se floor tak tum le jaati hoon. Button dabte hi khulti meri dehleez, Guess karo, main kaun hoon is CSE ki breeze?",
-      },
-      {
-        value: "LKKBoDUy",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question: "Decode the given into correct word: 'cinema'?",
-        options: ["cinema", "anemic", "iceman", "amine"],
-        answer: "iceman",
-        hint: "Na library, na canteen stall, Class aur guests ke saath mera hall. Mic aur stage, taaliyon ka jahan, Sabse upar milta, ek anokha hall.",
-      },
-      {
-        value: "dr0IC8pL",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question: "Decode the given into correct word: 'cinema'?",
-        options: ["cinema", "anemic", "iceman", "amine"],
-        answer: "iceman",
-        hint: "🎉 Congrats, you completed the hunt!",
-      },
-    ],
-  },
-  {
-    teamId: "team010",
-    qrId: "Oj5PLQr6",
-    penaltyUntil: null,
-    codes: [
-      {
-        value: "cY4dRNfl",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "I leave a trail of words wherever I touch; I can be ink, graphite, dust, or dye. Who am I?",
-        options: ["Pen", "Pencil", "Chalk", "Marker"],
-        answer: "Marker",
-        hint: "Auditorium ke paas, badi si jagah, Dhalan par padi, mitti ki raah. Na koi machine, bas khula sa ground, Batao wo jagah jahan gaadiyan paati thikaana found.",
-      },
-      {
-        value: "qJwZa4NJ",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "In Java, which collection class allows null keys and null values?",
-        options: ["Hashtable", "ConcurrentHashMap", "TreeMap", "HashMap"],
-        answer: "HashMap",
-        hint: "Na tyre, na rail par chalti hoon, Floor se floor tak tum le jaati hoon. Button dabte hi khulti meri dehleez, Guess karo, main kaun hoon is CSE ki breeze?",
-      },
-      {
-        value: "LKKBoDUy",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "Between anecdotes about skiing, honeybees, and jazz music, there’s a hint that the hot drink in your mug is made by steeping leaves.",
-        options: ["Coffee", "Tea", "Cocoa", "Soup"],
-        answer: "Tea",
-        hint: "Lohe aur machines ka yeh ghar, Tools ki goonj sunai padti har pehar. Mandir ke paas, jahan bacche paani bharne aate, Yeh hai wo jagah jahan lohe ke raaz samjhate.",
-      },
-      {
-        value: "62tMOzMe",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question: "Decode the given into correct word: 'opst'?",
-        options: ["post", "spot", "stop", "tops"],
-        answer: "tops",
-        hint: "Building ke paas, chhoti si jagah, Gaadiyon ka baithta yahan chhota basera. Suvidha ke raaste me milta yeh spot, Pedh ke saaye me hai konsa lot",
-      },
-      {
-        value: "hqYUOqVZ",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
-        options: ["Tea", "Coffee", "Juice", "Cola"],
-        answer: "Coffee",
-        hint: "Shor se door, shanti ka asra, Haathon mein judta sab ka basera. Ghanti ki goonj, sukh ka pal, Kaun si jagah banaye mann nirmal?",
-      },
-      {
-        value: "tyRKA5ZM",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
-        options: ["Tea", "Coffee", "Juice", "Cola"],
-        answer: "Coffee",
-        hint: "Naap, tol aur design ka hota yahan kaam, Models aur drawings se sajta iska naam. Roz guzarte bacche mere paas se, College aate ya college se jaate raaste.",
-      },
-      {
-        value: "VsuvZOXK",
-        scanned: false,
-        scannedAt: null,
-        timeOnly: null,
-        question:
-          "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
-        options: ["Tea", "Coffee", "Juice", "Cola"],
-        answer: "Coffee",
-        hint: "🎉 Congrats, you completed the hunt!",
-      },
-    ],
-  },
-]
+  // {
+  //   teamId: "team009",
+  //   qrId: "Oj5PLQr6",
+  //   penaltyUntil: null,
+  //   codes: [
+  //     {
+  //       value: "VsuvZOXK",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "I open windows to the web, some say I’m fast as a fox, others polished like an apple. Who am I?",
+  //       options: ["Chrome", "Firefox", "Safari", "Edge"],
+  //       answer: "Safari",
+  //       hint: "Na kitab, na board, bas comfort yahan, Friends ke saath guzar jaate breaks ke raan. Khushbu se pehchano is jagah ka naam, Har break ka main intezaam.",
+  //     },
+  //     {
+  //       value: "YDDm505s",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "I keep you awake, make your heart race, and hide in beans, leaves, or cocoa. What am I?",
+  //       options: ["Coffee", "Tea", "Cola", "Dark Chocolate"],
+  //       answer: "Dark Chocolate",
+  //       hint: "IT ke samne, screen aur ideas ka mela, Code aur circuits ka yahan hota khela. Seekhne, banane aur dikhane ka hub, Kaun si jagah hai tech lovers ka club?",
+  //     },
+  //     {
+  //       value: "cY4dRNfl",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "I’m perfectly balanced in my sides, wearing symmetry like a crown. Who am I?",
+  //       options: [
+  //         "Square",
+  //         "Rhombus",
+  //         "Equilateral Triangle",
+  //         "Regular Pentagon",
+  //       ],
+  //       answer: "Rhombus",
+  //       hint: "Building ke paas, chhoti si jagah, Gaadiyon ka baithta yahan chhota basera. Suvidha ke raaste me milta yeh spot, Pedh ke saaye me hai konsa lot",
+  //     },
+  //     {
+  //       value: "hqYUOqVZ",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "I build muscles, repair tissues, and can be eaten in many forms. What am I?",
+  //       options: ["Eggs", "Chicken", "Almonds", "Lentils"],
+  //       answer: "Eggs",
+  //       hint: "Naap, tol aur design ka hota yahan kaam, Models aur drawings se sajta iska naam. Roz guzarte bacche mere paas se, College aate ya college se jaate raaste.",
+  //     },
+  //     {
+  //       value: "VsuvZOXK",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question: "Decode the given into correct word: 'cinema'?",
+  //       options: ["cinema", "anemic", "iceman", "amine"],
+  //       answer: "iceman",
+  //       hint: "Na tyre, na rail par chalti hoon, Floor se floor tak tum le jaati hoon. Button dabte hi khulti meri dehleez, Guess karo, main kaun hoon is CSE ki breeze?",
+  //     },
+  //     {
+  //       value: "LKKBoDUy",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question: "Decode the given into correct word: 'cinema'?",
+  //       options: ["cinema", "anemic", "iceman", "amine"],
+  //       answer: "iceman",
+  //       hint: "Na library, na canteen stall, Class aur guests ke saath mera hall. Mic aur stage, taaliyon ka jahan, Sabse upar milta, ek anokha hall.",
+  //     },
+  //     {
+  //       value: "dr0IC8pL",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question: "Decode the given into correct word: 'cinema'?",
+  //       options: ["cinema", "anemic", "iceman", "amine"],
+  //       answer: "iceman",
+  //       hint: "🎉 Congrats, you completed the hunt!",
+  //     },
+  //   ],
+  // },
+  // {
+  //   teamId: "team010",
+  //   qrId: "Oj5PLQr6",
+  //   penaltyUntil: null,
+  //   codes: [
+  //     {
+  //       value: "cY4dRNfl",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "I leave a trail of words wherever I touch; I can be ink, graphite, dust, or dye. Who am I?",
+  //       options: ["Pen", "Pencil", "Chalk", "Marker"],
+  //       answer: "Marker",
+  //       hint: "Auditorium ke paas, badi si jagah, Dhalan par padi, mitti ki raah. Na koi machine, bas khula sa ground, Batao wo jagah jahan gaadiyan paati thikaana found.",
+  //     },
+  //     {
+  //       value: "qJwZa4NJ",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "In Java, which collection class allows null keys and null values?",
+  //       options: ["Hashtable", "ConcurrentHashMap", "TreeMap", "HashMap"],
+  //       answer: "HashMap",
+  //       hint: "Na tyre, na rail par chalti hoon, Floor se floor tak tum le jaati hoon. Button dabte hi khulti meri dehleez, Guess karo, main kaun hoon is CSE ki breeze?",
+  //     },
+  //     {
+  //       value: "LKKBoDUy",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "Between anecdotes about skiing, honeybees, and jazz music, there’s a hint that the hot drink in your mug is made by steeping leaves.",
+  //       options: ["Coffee", "Tea", "Cocoa", "Soup"],
+  //       answer: "Tea",
+  //       hint: "Lohe aur machines ka yeh ghar, Tools ki goonj sunai padti har pehar. Mandir ke paas, jahan bacche paani bharne aate, Yeh hai wo jagah jahan lohe ke raaz samjhate.",
+  //     },
+  //     {
+  //       value: "62tMOzMe",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question: "Decode the given into correct word: 'opst'?",
+  //       options: ["post", "spot", "stop", "tops"],
+  //       answer: "tops",
+  //       hint: "Building ke paas, chhoti si jagah, Gaadiyon ka baithta yahan chhota basera. Suvidha ke raaste me milta yeh spot, Pedh ke saaye me hai konsa lot",
+  //     },
+  //     {
+  //       value: "hqYUOqVZ",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
+  //       options: ["Tea", "Coffee", "Juice", "Cola"],
+  //       answer: "Coffee",
+  //       hint: "Shor se door, shanti ka asra, Haathon mein judta sab ka basera. Ghanti ki goonj, sukh ka pal, Kaun si jagah banaye mann nirmal?",
+  //     },
+  //     {
+  //       value: "tyRKA5ZM",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
+  //       options: ["Tea", "Coffee", "Juice", "Cola"],
+  //       answer: "Coffee",
+  //       hint: "Naap, tol aur design ka hota yahan kaam, Models aur drawings se sajta iska naam. Roz guzarte bacche mere paas se, College aate ya college se jaate raaste.",
+  //     },
+  //     {
+  //       value: "VsuvZOXK",
+  //       scanned: false,
+  //       scannedAt: null,
+  //       timeOnly: null,
+  //       question:
+  //         "The passage meanders through discussions of coffee bean roasting, the migration of monarch butterflies, and the sound patterns of whale songs, until it quietly notes that the liquid in the cup is both black and aromatic, leading to an obvious beverage.",
+  //       options: ["Tea", "Coffee", "Juice", "Cola"],
+  //       answer: "Coffee",
+  //       hint: "🎉 Congrats, you completed the hunt!",
+  //     },
+  //   ],
+  // },
+];
 
 async function insertTeams() {
   try {

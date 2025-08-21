@@ -15,6 +15,7 @@ const TeamSchema = new mongoose.Schema(
   {
     teamId: { type: String, required: true, unique: true },
     qrId: { type: String, required: true },
+    name: { type: String },
     penaltyUntil: { type: Date, default: null },
     codes: [CodeSchema],
   },

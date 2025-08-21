@@ -49,7 +49,7 @@ export default function Leaderboard() {
           <thead className="sticky top-0 bg-pink-500/30 backdrop-blur-sm text-pink-200 text-sm sm:text-base">
             <tr>
               <th className="p-3 rounded-l-lg">Rank</th>
-              <th className="p-3">Team ID</th>
+              <th className="p-3">Team Name</th>
               <th className="p-3">Scanned</th>
               <th className="p-3 rounded-r-lg">Last Scan Time</th>
             </tr>
@@ -75,7 +75,7 @@ export default function Leaderboard() {
                     {getRankIcon(index + 1)}
                     <span className="font-bold text-white">{index + 1}</span>
                   </td>
-                  <td className="p-3 text-white break-all">{team.teamId}</td>
+                  <td className="p-3 text-white break-all">{team.name}</td>
                   <td className="p-3 font-semibold text-pink-300">{team.score}</td>
                   <td className="p-3 text-gray-400">{formatTime(team.latestScanTime)}</td>
                 </tr>
