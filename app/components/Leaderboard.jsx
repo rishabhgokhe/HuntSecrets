@@ -59,7 +59,7 @@ export default function Leaderboard() {
               const isTop3 = index < 3;
               return (
                 <tr
-                  key={team.teamId}
+                  key={team.name}
                   className={`transition-all ${
                     isTop3
                       ? index === 0
