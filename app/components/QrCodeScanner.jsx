@@ -1,25 +1,20 @@
-"use client";
 import React, { useState, useEffect, useRef } from "react";
 import { Scanner, centerText } from "@yudiel/react-qr-scanner";
-import { Pause, Play, CheckCircle, AlertCircle, XCircle } from "lucide-react";
+import { Pause, Play } from "lucide-react";
 
 const QRCodeScanner = () => {
   const [pause, setPause] = useState(false);
   const [message, setMessage] = useState("📷 Scan a QR Code");
-  const [messageType, setMessageType] = useState("info"); // success | error | warning | info
   const [teamId, setTeamId] = useState("");
   const [questionData, setQuestionData] = useState(null);
   const [selectedAnswer, setSelectedAnswer] = useState("");
   const [currentQR, setCurrentQR] = useState({ qrId: "", qrValue: "" });
   const [penaltyUntil, setPenaltyUntil] = useState(null);
   const [penaltyRemaining, setPenaltyRemaining] = useState("");
-  const [showHint, setShowHint] = useState("");
+  const [showHint, setShowHint] = useState(""); // NEW: show hint after correct answer
   const timerRef = useRef(null);
 
-  const showMessage = (msg, type = "info") => {
-    setMessage(msg);
-    setMessageType(type);
-  };
+  const showMessage = (msg) => setMessage(msg);
 
   const askForTeamId = () => {
     const inputId = prompt("Enter your Team ID:");
@@ -27,7 +22,7 @@ const QRCodeScanner = () => {
       setTeamId(inputId.trim());
       return inputId.trim();
     }
-    showMessage("❌ Team ID required", "error");
+    showMessage("❌ Team ID required");
     return null;
   };
 
@@ -44,11 +39,11 @@ const QRCodeScanner = () => {
         clearInterval(timerRef.current);
         setPenaltyUntil(null);
         setPenaltyRemaining("");
-        showMessage("✅ Penalty over! You can scan again.", "success");
+        showMessage("✅ Penalty over! You can scan again.");
       } else {
         const minutes = Math.floor(diff / 1000 / 60);
         const seconds = Math.floor(diff / 1000) % 60;
-        setPenaltyRemaining(`⏳ Wait: ${minutes}m ${seconds}s`);
+        setPenaltyRemaining(`⏳ Penalty time: ${minutes}m ${seconds}s`);
       }
     }, 1000);
     return () => clearInterval(timerRef.current);
@@ -56,7 +51,7 @@ const QRCodeScanner = () => {
 
   const handleScan = (codes) => {
     if (penaltyUntil) {
-      showMessage("⚠ Under penalty. Wait until it expires.", "warning");
+      showMessage("⚠ Under penalty. Wait until it expires.");
       return;
     }
 
@@ -69,7 +64,7 @@ const QRCodeScanner = () => {
       const qrValue = params.get("qrValue");
 
       if (!qrId || !qrValue) {
-        showMessage("❌ Invalid QR format", "error");
+        showMessage("❌ Invalid QR format");
         return;
       }
 
@@ -85,33 +80,33 @@ const QRCodeScanner = () => {
         .then((data) => {
           if (data.penaltyUntil) {
             setPenaltyUntil(data.penaltyUntil);
-            showMessage(data.message, "warning");
+            showMessage(data.message);
             return;
           }
           if (data.success) {
-            setShowHint("");
+            setShowHint(""); // reset previous hint
             if (data.hint && !data.question) {
               setQuestionData(null);
-              showMessage(`💡 Hint: ${data.hint}`, "info");
+              showMessage(`💡 Hint: ${data.hint}`);
             } else {
               setQuestionData(data.question);
               setCurrentQR({ qrId, qrValue });
-              showMessage(data.message, "success");
+              showMessage(data.message);
             }
           } else {
             setQuestionData(null);
-            showMessage(data.message, "error");
+            showMessage(data.message);
           }
         })
-        .catch(() => showMessage("⚠️ Something went wrong", "error"));
+        .catch(() => showMessage("⚠️ Something went wrong"));
     } catch {
-      showMessage("❌ Invalid QR format", "error");
+      showMessage("❌ Invalid QR format");
     }
   };
 
   const handleSubmitAnswer = () => {
     if (!selectedAnswer) {
-      showMessage("⚠️ Please select an answer", "warning");
+      showMessage("⚠️ Please select an answer");
       return;
     }
 
@@ -127,56 +122,66 @@ const QRCodeScanner = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        showMessage(data.message, data.success ? "success" : "error");
+        showMessage(data.message);
         if (data.success) {
           setSelectedAnswer("");
-          if (data.hint) setShowHint(data.hint);
+          if (data.hint) setShowHint(data.hint); // show hint inside question box
         }
       })
-      .catch(() => showMessage("⚠️ Error submitting answer", "error"));
-  };
-
-  const statusColors = {
-    success: "bg-green-500/20 text-green-400 border-green-500",
-    error: "bg-red-500/20 text-red-400 border-red-500",
-    warning: "bg-yellow-500/20 text-yellow-400 border-yellow-500",
-    info: "bg-pink-500/20 text-pink-400 border-pink-500",
-  };
-
-  const statusIcons = {
-    success: <CheckCircle size={20} />,
-    error: <XCircle size={20} />,
-    warning: <AlertCircle size={20} />,
-    info: <AlertCircle size={20} />,
+      .catch(() =>
+        showMessage("⚠️ Something went wrong while submitting answer")
+      );
   };
 
   return (
-    <div className="w-full max-w-lg mx-auto p-6 rounded-2xl shadow-xl bg-black/60 backdrop-blur-lg border border-pink-500/40">
-      <div className="flex justify-end mb-4">
+    <div className="w-full max-w-lg mx-auto p-6 bg-black/60 backdrop-blur-md rounded-2xl shadow-lg border border-pink-500">
+      {/* Play Pause Button */}
+      <div className="flex justify-between items-center mb-4">
         <button
           onClick={() => setPause(!pause)}
-          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all
-            ${pause ? "bg-green-600 hover:bg-green-700" : "bg-red-600 hover:bg-red-700"} text-white`}
+          className={`flex items-center gap-2 px-4 py-2 rounded-lg font-semibold transition-all shadow-md
+      ${
+        pause
+          ? "bg-green-500 hover:bg-green-600 text-white"
+          : "bg-red-500 hover:bg-red-600 text-white"
+      }`}
         >
-          {pause ? <><Play size={18} /> Resume</> : <><Pause size={18} /> Pause</>}
+          {pause ? (
+            <>
+              <Play size={18} />
+              Resume
+            </>
+          ) : (
+            <>
+              <Pause size={18} />
+              Pause
+            </>
+          )}
         </button>
       </div>
 
+      {/* Penalty Timer */}
       {penaltyRemaining && (
-        <div className="mb-4 text-center text-yellow-400 font-bold animate-pulse">
+        <div className="mb-4 text-center text-yellow-400 font-bold">
           {penaltyRemaining}
         </div>
       )}
 
+      {/* Scanner */}
       {!questionData && !penaltyUntil && (
-        <div className="overflow-hidden rounded-xl border-4 border-pink-500 shadow-[0_0_25px_rgba(255,0,128,0.7)]">
+        <div className="overflow-hidden rounded-xl border-4 border-pink-500 shadow-[0_0_20px_rgba(255,0,128,0.6)]">
           <Scanner
             formats={["qr_code"]}
             paused={pause}
             scanDelay={1000}
             onScan={handleScan}
-            onError={() => showMessage("⚠ Camera error", "error")}
-            components={{ torch: true, zoom: true, finder: true, tracker: centerText }}
+            onError={() => showMessage("⚠ Camera error")}
+            components={{
+              torch: true,
+              zoom: true,
+              finder: true,
+              tracker: centerText,
+            }}
           />
         </div>
       )}
@@ -191,9 +196,11 @@ const QRCodeScanner = () => {
                 key={idx}
                 onClick={() => setSelectedAnswer(opt)}
                 className={`px-4 py-2 rounded-lg border text-left transition-all
-                  ${selectedAnswer === opt
-                    ? "bg-pink-600 text-white border-pink-500"
-                    : "bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700"}`}
+                  ${
+                    selectedAnswer === opt
+                      ? "bg-pink-600 text-white border-pink-500"
+                      : "bg-gray-800 text-gray-200 border-gray-600 hover:bg-gray-700"
+                  }`}
               >
                 {opt}
               </button>
@@ -211,13 +218,10 @@ const QRCodeScanner = () => {
         </div>
       )}
 
-      {message && (
-        <div
-          className={`mt-5 flex items-center gap-2 justify-center px-4 py-3 rounded-lg font-semibold border transition-all ${statusColors[messageType]}`}
-        >
-          {statusIcons[messageType]} <span>{message}</span>
-        </div>
-      )}
+      {/* Status Message */}
+      <div className="mt-4 text-center text-lg font-bold text-pink-400 bg-black/70 rounded-md px-4 py-2 border border-pink-500">
+        {message}
+      </div>
     </div>
   );
 };
