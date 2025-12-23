@@ -1,7 +1,10 @@
 {
-  "name": "CipherChase",
+  "name": "cipherchase",
   "version": "0.1.0",
   "private": true,
+  "description": "CipherChase – A QR-based team treasure hunt game built with Next.js",
+  "author": "Rishabh Gokhe",
+  "license": "MIT",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

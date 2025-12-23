@@ -4,7 +4,7 @@
 
 ## Description
 
-HuntSecrets is an immersive, web-based QR treasure hunt game designed to challenge your problem-solving and teamwork skills. Participants scan QR codes to uncover hidden clues, solve puzzles, and race against the clock to claim victory. With real-time leaderboards, penalty-based scoring, and a user-friendly interface, HuntSecrets offers an engaging experience for events, team-building activities, and community gatherings.
+HuntSecrets is an immersive, Web-based QR treasure hunt game designed to challenge your problem-solving and teamwork skills. Participants scan QR codes to uncover hidden clues, solve puzzles, and race against the clock to claim victory. With real-time leaderboards, penalty-based scoring, and a user-friendly interface, HuntSecrets offers an engaging experience for events, team-building activities, and community gatherings.
 
 ## 📸 Screenshots
 
